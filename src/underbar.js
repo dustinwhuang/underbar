@@ -101,6 +101,19 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
+    var retArr = [array[0]];
+
+    for (var i = 1; i < array.length; i++) {
+      for (var j = 0; j < retArr.length; j++) {
+        // compare to values already pushed
+        if (array[i] === retArr[j])
+          break;
+        else if (j === retArr.length-1)
+          retArr.push(array[i]);
+      }
+    }
+
+    return retArr;
   };
 
 
