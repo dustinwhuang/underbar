@@ -78,7 +78,7 @@
     var retArr = [];
 
     _.each(collection, function(item, index) {
-      if (test(item))
+      if (test(item, index, collection))
         retArr.push(item);
     });
 
@@ -89,26 +89,16 @@
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
-    return _.filter(collection, function(item) {
-      return !test(item);
+    return _.filter(collection, function(item, index) {
+      return !test(item, index, collection);
     });
   };
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
-    var retArr = [array[0]];
-
-    for (var i = 1; i < array.length; i++) {
-      for (var j = 0; j < retArr.length; j++) {
-        // compare to values already pushed
-        if (array[i] === retArr[j])
-          break;
-        else if (j === retArr.length-1)
-          retArr.push(array[i]);
-      }
-    }
-
-    return retArr;
+    return _.filter(array, function(item, index) {
+      return _.indexOf(array, item) === index;
+    });
   };
 
 
