@@ -119,8 +119,9 @@
     // the members, it also maintains an array of results.
     var retArr = [];
 
-    for (var key = 0; key < collection.length; key++)
-      retArr.push(iterator(collection[key], key, collection));
+    _.each(collection, function(item, index) {
+      retArr.push(iterator(item, index, collection));
+    });
 
     return retArr;
   };
