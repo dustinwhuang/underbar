@@ -167,8 +167,12 @@
       key = 0;
     }
 
-    for (; key < collection.length; key++) {
-      retVal = iterator(retVal, collection[key]);
+    if (collection.constructor === Array) {
+      for (; key < collection.length; key++)
+        retVal = iterator(retVal, collection[key]);
+    } else {
+      for (key in collection)
+        retVal = iterator(retVal, collection[key]);  
     }
 
     return retVal;
