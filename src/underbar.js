@@ -196,7 +196,7 @@
     // TIP: Try re-using reduce() here.
     if (iterator === undefined)
       iterator = _.identity;
-    
+
     return _.reduce(collection, function(memo, item){
       return Boolean(iterator(item)) && memo;
     }, true);
@@ -206,6 +206,12 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    if (iterator === undefined)
+      iterator = _.identity;
+    
+    return !_.every(collection, function(item){
+      return !iterator(item);
+    });
   };
 
 
