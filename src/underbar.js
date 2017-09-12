@@ -304,7 +304,7 @@
       args.push(arguments.length);
 
       if (alreadyCalled[args] === undefined) {
-        alreadyCalled[args] = func.apply(this, args);
+        alreadyCalled[args] = func.apply(this, arguments);
       }
 
       return alreadyCalled[args];
